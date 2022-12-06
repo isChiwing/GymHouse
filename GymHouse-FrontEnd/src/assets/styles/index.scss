@@ -1,0 +1,16 @@
+@import './reset.scss';
+
+:root {
+  --theme-color: #E04A4B;
+  --filter-glass: blur(20px) saturate(180%);
+  --text-1: #111;
+  --text-2: #444;
+  --text-3: #888;
+  --bg-1: #fff;
+  --bg-2: rgb(247, 247, 247);
+  --bg-3: rgb(220, 220, 224);
+}
+
+html {
+  font-size: 16px;
+}
