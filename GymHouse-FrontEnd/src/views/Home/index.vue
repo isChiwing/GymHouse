@@ -1,5 +1,12 @@
 <script lang="ts" setup>
+import { Ref, ref } from "vue";
+import router from "../../router";
 import LgBtn from "@/components/LoginButton.vue";
+
+//首页按钮跳转
+const goOrder:any = () => {
+  router.push('/about');
+};
 </script>
 
 <template>
@@ -11,8 +18,8 @@ import LgBtn from "@/components/LoginButton.vue";
         <div class="title-text">DREAMHOUSE</div>
         <div class="title-slogan">把健身房当成梦想的家</div>
       </div>
-      <div class="btn">
-        <LgBtn>立即预约 →</LgBtn>
+      <div class="btn" @click="goOrder">
+        <LgBtn>了解我们 →</LgBtn>
       </div>
     </div>
 
