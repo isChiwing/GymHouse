@@ -112,6 +112,7 @@ const onMouseEnter: any = (index: number) => {
       height: 100%;
       object-fit: cover;
       aspect-ratio: 1 / 1;
+      box-shadow: 5px 5px 10px #ccc
     }
   }
 
@@ -145,6 +146,7 @@ const onMouseEnter: any = (index: number) => {
     }
     .borderHover {
       border: 2px solid var(--theme-color);
+      box-shadow: 5px 5px 10px #ccc
     }
   }
 }
