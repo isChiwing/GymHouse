@@ -62,6 +62,7 @@ const onMouseEnter: any = (index: number) => {
             v-for="(item, index) in dataList"
             :key="index"
             @mouseenter="onMouseEnter(index)"
+            :class="item.state?'borderHover':'borderNull'"
           >
             <div class="fitness-name">{{ item.name }}</div>
             <div class="fitness-msg">联系电话：{{ item.phone }}</div>
@@ -80,7 +81,7 @@ const onMouseEnter: any = (index: number) => {
 }
 
 .title {
-  padding-top: 8vh;
+  padding-top: 13vh;
   margin-left: 10%;
   font-size: 30px;
   font-family: Arial, Helvetica, sans-serif;
@@ -121,17 +122,15 @@ const onMouseEnter: any = (index: number) => {
     .content-msg {
       width: 100%;
       height: 30%;
-      border: 2px solid #ccc;
       margin-top: 10px;
       margin-bottom: 10px;
       border-radius: 5px;
       padding-left: 30px;
       cursor: pointer;
 
-      &:hover {
-        border: 2px solid var(--theme-color);
-      }
-
+      // &:hover {
+      //   border: 2px solid var(--theme-color);
+      // }
       .fitness-name {
         margin-top: 25px;
         font-size: 20px;
@@ -140,6 +139,12 @@ const onMouseEnter: any = (index: number) => {
         margin-top: 25px;
         font-size: 18px;
       }
+    }
+    .borderNull {
+      border: 2px solid #ccc;
+    }
+    .borderHover {
+      border: 2px solid var(--theme-color);
     }
   }
 }
