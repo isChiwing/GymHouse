@@ -6,12 +6,23 @@ import TopBar from "@/components/TopBar.vue";
 </script>
 
 <template>
-  <top-bar></top-bar>
-  <router-view />
+    <div style="width: 100%; height: 61px;">
+      <top-bar></top-bar>
+    </div>
+    
+    <router-view class="setRouterview"/>
+  
 </template>
 
 <style lang="scss">
 @import "@/assets/styles/index.scss";
+
+.topbar{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+}
 
 #nprogress .bar {
   background: var(--theme-color) !important; //自定义颜色

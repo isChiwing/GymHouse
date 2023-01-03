@@ -45,6 +45,7 @@ import LoginButton from './LoginButton.vue'
   height: 60px;
   font-size: 0.9rem;
   border-bottom: 1px #eee solid;
+  background-color: #fff;
   .logo {
     display: flex;
     margin-left: 5rem;
