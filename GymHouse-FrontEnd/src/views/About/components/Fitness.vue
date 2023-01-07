@@ -104,7 +104,6 @@ const onMouseEnter: any = (index: number) => {
   .banner {
     width: 40%;
     height: 100%;
-    background-color: pink;
     margin-right: 30px;
 
     img {
