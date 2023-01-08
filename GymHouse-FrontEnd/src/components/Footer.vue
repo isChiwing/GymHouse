@@ -73,6 +73,7 @@
     .thanks-item {
       color: #333;
       display: flex;
+      font-size: 16px;
       span {
         line-height: 28px;
         padding-right: 2rem;
