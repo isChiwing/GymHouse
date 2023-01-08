@@ -58,7 +58,7 @@ const handleNext: any = () => {
     index.value++;
     oWapper.value = "translateX(" + index.value * -345 + "px)";
     reBtn.value = "pointer";
-    if (index.value == 6 - 3) {
+    if (index.value == trainerList.length - 3) {
       nextBtn.value = "not-allowed";
     }
   }
