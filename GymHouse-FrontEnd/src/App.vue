@@ -3,6 +3,7 @@
 // Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
 //import HelloWorld from './components/HelloWorld.vue'
 import TopBar from "@/components/TopBar.vue";
+import FooterVue from "@/components/Footer.vue";
 </script>
 
 <template>
@@ -11,6 +12,8 @@ import TopBar from "@/components/TopBar.vue";
     </div>
     
     <router-view class="setRouterview"/>
+
+    <footer-vue></footer-vue>
   
 </template>
 
