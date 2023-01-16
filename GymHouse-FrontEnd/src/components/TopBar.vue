@@ -1,6 +1,12 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import LoginButton from './LoginButton.vue'
+import router from "../router";
+
+const jumpLoginPage = ()=>{
+  router.push("/login")
+}
+
 </script>
 
 <template>
@@ -28,7 +34,7 @@ import LoginButton from './LoginButton.vue'
           <router-link to="/article" active-class="active">资讯</router-link>
         </li>
       </ul>
-      <LoginButton>登入/注册</LoginButton>
+      <LoginButton @click="jumpLoginPage">登入/注册</LoginButton>
     </div>
   </div>
 </template>
