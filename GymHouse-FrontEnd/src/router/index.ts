@@ -35,7 +35,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "repairs",
     component: () => import("../views/Repairs/index.vue"),
     meta: {
-      title: "保修",
+      title: "报修",
       index: "4",
     },
   },
