@@ -4,7 +4,8 @@ import router from "./router";
 import { start, close } from "./script/utils/nprogress";
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
-import 'default-passive-events'
+import './assets/styles/element-variables.scss'
+//import 'default-passive-events'
 
 createApp(App).use(router).use(ElementPlus).mount("#app");
 
