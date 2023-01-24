@@ -7,6 +7,7 @@ const dataList = reactive([
     state: true,
     name: "DREAMHOUSE - 同心圆店",
     phone: "020-83465151",
+    time:"9:30 - 22:30",
     img: "https://big.justeasy.cn/effect/202101/20210127111104_6010d9c8efba8.png",
     address: "广州市黄埔区同心圆路416号整栋",
   },
@@ -15,6 +16,7 @@ const dataList = reactive([
     state: false,
     name: "DREAMHOUSE - 同乐圆店",
     phone: "020-82413624",
+    time:"9:30 - 22:30",
     img: "https://img95.699pic.com/photo/50112/3775.jpg_wh860.jpg",
     address: "广州市黄埔区同乐圆路21号广商购物中心5楼",
   },
@@ -23,6 +25,7 @@ const dataList = reactive([
     state: false,
     name: "DREAMHOUSE - 同德圆店",
     phone: "020-85392403",
+    time:"9:30 - 22:30",
     img: "https://5b0988e595225.cdn.sohucs.com/images/20181210/9bbdb69f0e394b379ea2a7da55ee939f.jpeg",
     address: "广州市黄埔区同德圆路416号康达广场3楼",
   },
@@ -66,6 +69,7 @@ const onMouseEnter: any = (index: number) => {
           >
             <div class="fitness-name">{{ item.name }}</div>
             <div class="fitness-msg">联系电话：{{ item.phone }}</div>
+            <div class="fitness-msg">营业时间：{{ item.time }}</div>
             <div class="fitness-msg">地址：{{ item.address }}</div>
           </div>
         </div>
@@ -136,7 +140,7 @@ const onMouseEnter: any = (index: number) => {
         font-size: 20px;
       }
       .fitness-msg {
-        margin-top: 25px;
+        margin-top: 15px;
         font-size: 18px;
       }
     }
