@@ -11,7 +11,7 @@ import FooterVue from "@/components/Footer.vue";
       <top-bar></top-bar>
     </div>
     
-    <router-view class="setRouterview"/>
+    <router-view/>
 
     <footer-vue></footer-vue>
   

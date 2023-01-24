@@ -315,6 +315,11 @@ dayjs@^1.11.3:
   resolved "https://registry.npmmirror.com/dayjs/-/dayjs-1.11.7.tgz#4b296922642f70999544d1144a2c25730fce63e2"
   integrity sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==
 
+default-passive-events@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/default-passive-events/-/default-passive-events-2.0.0.tgz#79b1aa67becbaab38b718469b5480fef92eda649"
+  integrity sha512-eMtt76GpDVngZQ3ocgvRcNCklUMwID1PaNbCNxfpDXuiOXttSh0HzBbda1HU9SIUsDc02vb7g9+3I5tlqe/qMQ==
+
 element-plus@^2.2.28:
   version "2.2.28"
   resolved "https://registry.npmmirror.com/element-plus/-/element-plus-2.2.28.tgz#855441976e82da597faecaf6ed74fc4650a970b2"
@@ -595,6 +600,11 @@ nprogress@^0.2.0:
   resolved "https://registry.npmmirror.com/nprogress/-/nprogress-0.2.0.tgz#cb8f34c53213d895723fcbab907e9422adbcafb1"
   integrity sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==
 
+ometa@0.2.2:
+  version "0.2.2"
+  resolved "https://registry.npmmirror.com/ometa/-/ometa-0.2.2.tgz#f53c4735ba6d56af5a46b04dfb7c4334c596d44e"
+  integrity sha512-LZuoK/yjU3FvrxPjUXUlZ1bavCfBPqauA7fsNdwi+AVhRdyk2IzgP3JRnevvjzQ6fKHdUw8YISshf53FmpHrng==
+
 path-parse@^1.0.7:
   version "1.0.7"
   resolved "https://registry.npmmirror.com/path-parse/-/path-parse-1.0.7.tgz"
@@ -650,6 +660,13 @@ sass@^1.56.1:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
     source-map-js ">=0.6.2 <2.0.0"
+
+scss@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.npmmirror.com/scss/-/scss-0.2.4.tgz#040d903ed37c5d4fa4ad33ae1fd389ac12a4e065"
+  integrity sha512-4u8V87F+Q/upVhUmhPnB4C1R11xojkRkWjExL2v0CX2EXTg18VrKd+9JWoeyCp2VEMdSpJsyAvVU+rVjogh51A==
+  dependencies:
+    ometa "0.2.2"
 
 semver@^7.3.7:
   version "7.3.8"
