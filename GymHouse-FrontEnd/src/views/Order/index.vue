@@ -110,7 +110,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
       console.log(formData);
       //提示框
       ElMessage({
-        message: "提交成功！",
+        message: "预约成功！",
         type: "success",
       });
     } else {
@@ -237,7 +237,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 .form {
   width: 68%;
   margin: 0 auto;
-  margin-top: 7vh;
+  margin-top: 6vh;
   display: flex;
 
   .elform {
