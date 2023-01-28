@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.10",
     "@vueuse/core": "^9.9.0",
     "default-passive-events": "^2.0.0",
     "element-plus": "^2.2.28",
