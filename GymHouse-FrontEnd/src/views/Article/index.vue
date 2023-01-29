@@ -1,5 +1,31 @@
 <script lang="ts" setup>
 import { ElPagination, ElTag } from "element-plus";
+import { Ref, ref, reactive } from "vue";
+
+//表单
+const articleList = reactive([
+  {
+    title: "文章标题文章标题文章标题",
+    type: 0,
+    author: "admin",
+    date: "2023-01-29",
+    text: "文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容",
+  },
+  {
+    title: "文章标题2文章标题2文章标题",
+    type: 1,
+    author: "admin",
+    date: "2023-01-29",
+    text: "文章内容2文章内容2文章内容2文章内容2文章内容文章内容文章内容文章内容文章内容",
+  },
+  {
+    title: "文章标题3文章标题3文章标题",
+    type: 0,
+    author: "admin",
+    date: "2023-01-29",
+    text: "文章内容2文章内容2文章内容2文章内容2文章内容文章内容文章内容文章内容文章内容",
+  },
+]);
 </script>
 
 <template>
@@ -8,23 +34,24 @@ import { ElPagination, ElTag } from "element-plus";
 
     <div class="box">
       <!-- 内容 -->
-      <div class="content" v-for="item in 10">
+      <div class="content" v-for="item in articleList">
         <div class="basic-msg">
           <div class="tag-title">
             <div class="tag-part">
-              <el-tag class="tag">文章</el-tag>
+              <el-tag class="tag" v-if="item.type==0">文章</el-tag>
+              <el-tag class="ml-2" type="warning" v-if="item.type==1">通知</el-tag>
             </div>
-            <div class="article-title">文章标题文章标题文章标题</div>
+            <div class="article-title">{{ item.title }}</div>
           </div>
 
           <div class="abstract">
-            文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容
+            {{ item.text }}
           </div>
         </div>
 
         <div class="date-author">
-          <div class="date">日期：2023-1-29</div>
-          <div class="author">作者：admin</div>
+          <div class="date">日期：{{ item.date }}</div>
+          <div class="author">作者：{{ item.author }}</div>
         </div>
       </div>
 
