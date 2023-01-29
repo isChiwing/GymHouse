@@ -70,7 +70,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 <template>
   <div>
     <div class="title">
-      <span>REGISTER TO</span> <br />
+      <span>SIGN UP THE</span> <br />
       GYMHOUSE
     </div>
     <div class="form">
