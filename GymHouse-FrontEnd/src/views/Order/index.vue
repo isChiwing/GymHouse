@@ -30,11 +30,7 @@ const addressData = reactive(["同心圆店", "同乐园店", "同德园店"]);
 //教练数据
 const trainerData = reactive([
   "自由训练",
-  "Tony",
-  "Jenney",
-  "Ben",
-  "Devin",
-  "Lucy",
+  "教练带练（备注教练）"
 ]);
 
 //禁选日期
@@ -95,7 +91,7 @@ const rules = reactive<FormRules>({
   trainer: [
     {
       required: true,
-      message: "请选择教练",
+      message: "请选择训练方式",
       trigger: "change",
     },
   ],
@@ -172,10 +168,10 @@ const submitForm = async (formEl: FormInstance | undefined) => {
             </el-select>
           </el-form-item>
 
-          <el-form-item label="选择教练" prop="trainer">
+          <el-form-item label="训练方式" prop="trainer">
             <el-select
               v-model="formData.trainer"
-              placeholder="请选择训练方式或教练"
+              placeholder="请选择训练方式"
             >
               <el-option
                 v-for="item in trainerData"
