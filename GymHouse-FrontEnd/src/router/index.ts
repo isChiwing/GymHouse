@@ -54,7 +54,25 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/Login/index.vue"),
     meta: {
       title: "登录/注册",
-      index: "5",
+      index: "6",
+    },
+  },
+  {
+    path: "/admin",
+    name: "adimin",
+    component: () => import("../views/Admin/index.vue"),
+    meta: {
+      title: "管理员中心",
+      index: "7",
+    },
+  },
+  {
+    path: "/user",
+    name: "user",
+    component: () => import("../views/User/index.vue"),
+    meta: {
+      title: "用户中心",
+      index: "8",
     },
   },
   

@@ -9,6 +9,8 @@ import './assets/styles/element-variables.scss'
 
 createApp(App).use(router).use(ElementPlus).mount("#app");
 
+
+
 //设置路由导航
 router.beforeEach((to, from, next) => {
   start();

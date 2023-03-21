@@ -2,6 +2,7 @@
 import { Ref, ref, reactive } from "vue";
 import LgBtn from "@/components/LoginButton.vue";
 import { User, Key } from "@element-plus/icons-vue";
+import router from "../../../router";
 import {
   FormInstance,
   FormRules,
@@ -29,6 +30,7 @@ const rules = reactive<FormRules>({
 });
 
 //提交
+let loginType = 0;
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
@@ -40,6 +42,12 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         message: "登录成功！",
         type: "success",
       });
+      if(loginType == 0){
+        router.push("/admin");
+      }else if(loginType == 1){
+        router.push("/user");
+      }
+      
     } else {
       console.log("error submit!", fields);
     }
