@@ -5,25 +5,31 @@ import { Ref, ref, reactive } from "vue";
 //表单
 const articleList = reactive([
   {
-    title: "文章标题文章标题文章标题",
-    type: 0,
-    author: "admin",
-    date: "2023-01-29",
-    text: "文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容",
+    userName: "张三",
+    phone: "13500000000",
+    date: "2023-03-23",
+    time: "上午",
+    address: "同心圆店",
+    trainMode:"自由训练",
+    notes:"备注备注111"
   },
   {
-    title: "文章标题2文章标题2文章标题",
-    type: 1,
-    author: "admin",
-    date: "2023-01-29",
-    text: "文章内容2文章内容2文章内容2文章内容2文章内容文章内容文章内容文章内容文章内容",
+    userName: "张三",
+    phone: "13500000000",
+    date: "2023-03-23",
+    time: "上午",
+    address: "同心圆店",
+    trainMode:"自由训练",
+    notes:"备注备注111"
   },
   {
-    title: "文章标题3文章标题3文章标题",
-    type: 0,
-    author: "admin",
-    date: "2023-01-29",
-    text: "文章内容2文章内容2文章内容2文章内容2文章内容文章内容文章内容文章内容文章内容",
+    userName: "张三",
+    phone: "13500000000",
+    date: "2023-03-23",
+    time: "上午",
+    address: "同心圆店",
+    trainMode:"自由训练",
+    notes:"备注备注111"
   },
 ]);
 </script>
@@ -41,22 +47,19 @@ const articleList = reactive([
           <div class="basic-msg">
             <div class="tag-title">
               <div class="tag-part">
-                <el-tag class="tag" v-if="item.type == 0">文章</el-tag>
-                <el-tag class="ml-2" type="warning" v-if="item.type == 1"
-                  >通知</el-tag
-                >
+                <el-tag class="tag">{{item.trainMode}}</el-tag>
               </div>
-              <div class="article-title">{{ item.title }}</div>
+              <div class="article-title">{{ item.address }} - {{ item.date }} - {{ item.time }}</div>
             </div>
 
             <div class="abstract">
-              {{ item.text }}
+              备注：{{ item.notes }}
             </div>
           </div>
 
           <div class="date-author">
-            <div class="date">日期：{{ item.date }}</div>
-            <div class="author">作者：{{ item.author }}</div>
+            <div class="date">电话：{{ item.phone }}</div>
+            <div class="author">预约人：{{ item.userName }}</div>
           </div>
         </div>
 

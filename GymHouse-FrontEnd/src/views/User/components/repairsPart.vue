@@ -39,7 +39,7 @@ const articleList = reactive([
     <div class="repairsPart">
       <div class="title">
         <span>REPAIRS</span>
-        OF USER
+        OF ME
       </div>
       <div class="box">
         <!-- 内容 -->
@@ -62,6 +62,7 @@ const articleList = reactive([
             <div class="author">用户：{{ item.userName }}</div>
           </div>
         </div>
+
         <!-- 分页 -->
         <div class="page">
           <el-pagination layout="prev, pager, next" :total="50" />
@@ -131,7 +132,7 @@ const articleList = reactive([
       margin-top: 10px;
       padding: 10px;
       text-align: end;
-      width: 22%;
+      width: 25%;
       color: #666;
       font-size: 16px;
       .date {

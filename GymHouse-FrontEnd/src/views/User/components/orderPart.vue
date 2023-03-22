@@ -6,40 +6,40 @@ import { Ref, ref, reactive } from "vue";
 const articleList = reactive([
   {
     userName: "张三",
-    phone : "13500000000",
-    date: "2023-01-29",
+    phone: "13500000000",
+    date: "2023-03-23",
+    time: "上午",
     address: "同心圆店",
-    trainArea :"力量区",
-    machineNum :"L01",
-    notes: "改进意见改进意见改进意见",
+    trainMode:"自由训练",
+    notes:"备注备注111"
   },
   {
     userName: "张三",
-    phone : "13500000000",
-    date: "2023-01-29",
+    phone: "13500000000",
+    date: "2023-03-23",
+    time: "上午",
     address: "同心圆店",
-    trainArea :"力量区",
-    machineNum :"L01",
-    notes: "改进意见改进意见改进意见",
+    trainMode:"自由训练",
+    notes:"备注备注111"
   },
   {
     userName: "张三",
-    phone : "13500000000",
-    date: "2023-01-29",
+    phone: "13500000000",
+    date: "2023-03-23",
+    time: "上午",
     address: "同心圆店",
-    trainArea :"力量区",
-    machineNum :"L01",
-    notes: "改进意见改进意见改进意见",
+    trainMode:"自由训练",
+    notes:"备注备注111"
   },
 ]);
 </script>
 
 <template>
-  <div id="#repairs">
-    <div class="repairsPart">
+  <div id="#order">
+    <div class="orderPart">
       <div class="title">
-        <span>REPAIRS</span>
-        OF USER
+        <span>ORDER</span>
+        OF ME
       </div>
       <div class="box">
         <!-- 内容 -->
@@ -47,21 +47,22 @@ const articleList = reactive([
           <div class="basic-msg">
             <div class="tag-title">
               <div class="tag-part">
-                <el-tag class="tag" >器材编号：{{item.machineNum}}</el-tag>
+                <el-tag class="tag">{{item.trainMode}}</el-tag>
               </div>
-              <div class="article-title">{{ item.address }} - {{item.trainArea}} - {{ item.date }}</div>
+              <div class="article-title">{{ item.address }} - {{ item.date }} - {{ item.time }}</div>
             </div>
 
             <div class="abstract">
-              改进建议：{{ item.notes }}
+              备注：{{ item.notes }}
             </div>
           </div>
 
           <div class="date-author">
             <div class="date">电话：{{ item.phone }}</div>
-            <div class="author">用户：{{ item.userName }}</div>
+            <div class="author">预约人：{{ item.userName }}</div>
           </div>
         </div>
+
         <!-- 分页 -->
         <div class="page">
           <el-pagination layout="prev, pager, next" :total="50" />
@@ -72,8 +73,8 @@ const articleList = reactive([
 </template>
 
 <style lang="scss" scoped>
-.repairsPart {
-  padding-top: 61px;
+.orderPart {
+  padding-top: 20px;
   margin-left: 20%;
   min-height: calc(100vh - 61px);
 }
@@ -131,7 +132,7 @@ const articleList = reactive([
       margin-top: 10px;
       padding: 10px;
       text-align: end;
-      width: 22%;
+      width: 25%;
       color: #666;
       font-size: 16px;
       .date {
