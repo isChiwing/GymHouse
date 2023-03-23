@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "target": "es6",
+      "module": "commonjs",
+      "strict": true,
+      "experimentalDecorators": true,
+      "esModuleInterop": true,
+      "strictPropertyInitialization": false,
+      "emitDecoratorMetadata": true,
+      "lib": ["es5", "es6", "dom"],  
+      "moduleResolution": "node",
+    }
+  }

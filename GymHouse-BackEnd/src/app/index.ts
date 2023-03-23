@@ -1,6 +1,7 @@
 import Koa from "koa"
 import koaBody from "koa-body"
 const userRouter = require('../router/user.route')
+require('reflect-metadata');
 
 const app = new Koa()
 
