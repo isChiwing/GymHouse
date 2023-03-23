@@ -1,19 +1,7 @@
-import Koa from "koa"
-import { Context } from "koa"
-import Router from "koa-router"
-//import {usersRouter} from './router/users'
-import koaBody from "koa-body"
+const { APP_PORT } = require('./config/config.default')
 
-const error = require('koa-json-error')
-const app = new Koa()
-const usersRouter = require('./router/users')
-const articleRouter = require('./router/article')
-app.use(koaBody())
-app.use(usersRouter.routes())
-app.use(articleRouter.routes())
-//app.use(error())
-app.on('error',(err,ctx)=>{
-    ctx.body=err
+const app = require('./app/index')
+
+app.listen(APP_PORT,()=>{
+    console.log(`sever is running on http://localhost:${APP_PORT}`)
 })
-
-module.exports=app 
