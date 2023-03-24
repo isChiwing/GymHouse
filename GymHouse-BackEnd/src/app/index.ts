@@ -1,11 +1,26 @@
-import Koa from "koa"
-import koaBody from "koa-body"
-const userRouter = require('../router/user.route')
-require('reflect-metadata');
+import Koa from "koa";
+import koaBody from "koa-body";
+const userRouter = require("../router/user.route");
+require("reflect-metadata");
+const error = require("koa-json-error");
 
-const app = new Koa()
+const app = new Koa();
 
-app.use(koaBody())
-app.use(userRouter.routes())
+//错误异常处理
+interface CustomError extends Error {
+  status?: number;
+}
 
-module.exports = app
+app.use(
+  error({
+    postFormat: (
+      e: CustomError,
+      { stack, ...rest }: { stack: string; [key: string]: any }
+    ) => rest,
+  })
+);
+
+app.use(koaBody());
+app.use(userRouter.routes());
+
+module.exports = app;

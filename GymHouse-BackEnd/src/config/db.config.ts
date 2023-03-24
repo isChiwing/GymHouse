@@ -10,7 +10,7 @@ const config: ConnectionOptions = {
   password: '123456',
   database: 'GymHouse',
   entities: [User],
-  synchronize: true,
+  synchronize: false,
 };
 
 export default config;

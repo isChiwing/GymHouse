@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 require('reflect-metadata');
 
-@Entity()
+@Entity({name: 'user'})
 export class User {
     
   @PrimaryGeneratedColumn()
@@ -15,4 +15,7 @@ export class User {
 
   @Column()
   passWord: string;
+
+  @Column()
+  userType: number;
 }
