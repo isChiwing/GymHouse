@@ -1,4 +1,4 @@
-const {submitrepairsService} = require("../service/reparis.service");
+const {submitrepairsService,repairsListService,repairsByUserService} = require("../service/reparis.service");
 
 class repairsController{
     async submitreparis(ctx: any, next: any) {
@@ -12,6 +12,21 @@ class repairsController{
               message: "提交报修成功",
             };
           }
+    }
+
+    async repairsList(ctx: any, next: any) {
+      //获取界面数据
+      const  page  = ctx.query.page;
+      const res = await repairsListService(page);
+      ctx.body = res;
+    }
+  
+    async repairsByUser(ctx: any, next: any) {
+      //获取界面数据
+      const  page  = ctx.query.page;
+      const  userId  = ctx.query.userId;
+      const res = await repairsByUserService(page,userId);
+      ctx.body = res;
     }
 }
 
