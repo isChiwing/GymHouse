@@ -30,7 +30,7 @@ const rules = reactive<FormRules>({
 });
 
 //提交
-let loginType = 1;
+let loginType = 0;
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
