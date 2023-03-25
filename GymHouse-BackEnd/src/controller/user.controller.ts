@@ -1,4 +1,4 @@
-const { registerSservice } = require("../service/user.service");
+const { registerSservice,loginSservice } = require("../service/user.service");
 class UserController {
   /**
    * 注册
@@ -23,8 +23,22 @@ class UserController {
     }
   }
 
+  /**
+   * 登录
+   */
   async login(ctx: any, next: any) {
-    ctx.body = "用户登录";
+    const { phone, passWord } = ctx.request.body;
+    const res = await loginSservice(phone, passWord);
+    console.log(res);
+    //返回结果
+    if (res == 0) {
+      ctx.body = {
+        status: 200,
+        message: "登录成功",
+      };
+    } else if (res == 1) {
+        ctx.throw(500, '用户名不存在或密码错误！')
+    }
   }
 }
 
