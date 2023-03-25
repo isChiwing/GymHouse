@@ -1,4 +1,4 @@
-const {submitorderService} = require("../service/order.service");
+const {submitorderService,orderListService,orderByUserService} = require("../service/order.service");
 
 class OrderController {
   async submitorder(ctx: any, next: any) {
@@ -14,14 +14,19 @@ class OrderController {
     }
   }
 
-  async orderdetail(ctx: any, next: any) {
+  async orderList(ctx: any, next: any) {
     //获取界面数据
-    //const { phone, userName, passWord } = ctx.request.body;
+    const  page  = ctx.query.page;
+    const res = await orderListService(page);
+    ctx.body = res;
   }
 
-  async myoderdetail(ctx: any, next: any) {
+  async orderByUser(ctx: any, next: any) {
     //获取界面数据
-    //const { phone, userName, passWord } = ctx.request.body;
+    const  page  = ctx.query.page;
+    const  userId  = ctx.query.userId;
+    const res = await orderByUserService(page,userId);
+    ctx.body = res;
   }
 }
 

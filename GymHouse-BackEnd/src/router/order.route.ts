@@ -1,5 +1,5 @@
 const OrderRouter = require('koa-router')
-const {submitorder, orderdetail, myoderdetail} = require('../controller/order.controller')
+const {submitorder, orderList, orderByUser} = require('../controller/order.controller')
 
 const orderRoute = new OrderRouter({prefix:'/order'});
 
@@ -7,9 +7,9 @@ const orderRoute = new OrderRouter({prefix:'/order'});
 orderRoute.post('/submitorder',submitorder)
 
 //所有预约记录
-orderRoute.get('/orderdetail',orderdetail)
+orderRoute.get('/orderList',orderList)
 
 //用户预约记录
-orderRoute.get('/myoderdetail',myoderdetail)
+orderRoute.get('/orderByUser',orderByUser)
 
 module.exports = orderRoute
