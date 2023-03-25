@@ -25,3 +25,12 @@ export function submitorder(data: {
       data,
     });
   }
+
+  //预约列表-用户
+export function orderByUser(page: number,userId:number) {
+    return service.request({
+      method: "GET",
+      url: "/api/order/orderByUser",
+      params: { page,userId },
+    });
+  }

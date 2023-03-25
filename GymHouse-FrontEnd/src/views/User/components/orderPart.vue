@@ -1,37 +1,37 @@
 <script lang="ts" setup>
 import { ElPagination, ElTag } from "element-plus";
 import { Ref, ref, reactive } from "vue";
+import * as Apis from "../../../request/apis/index";
 
 //表单
-const articleList = reactive([
-  {
-    userName: "张三",
-    phone: "13500000000",
-    date: "2023-03-23",
-    time: "上午",
-    address: "同心圆店",
-    trainMode:"自由训练",
-    notes:"备注备注111"
-  },
-  {
-    userName: "张三",
-    phone: "13500000000",
-    date: "2023-03-23",
-    time: "上午",
-    address: "同心圆店",
-    trainMode:"自由训练",
-    notes:"备注备注111"
-  },
-  {
-    userName: "张三",
-    phone: "13500000000",
-    date: "2023-03-23",
-    time: "上午",
-    address: "同心圆店",
-    trainMode:"自由训练",
-    notes:"备注备注111"
-  },
-]);
+const orderList: any = ref({
+  userName: "",
+  phone: "",
+  date: "",
+  time: "",
+  address: "",
+  trainMode: "",
+  notes: "",
+});
+
+const page = 1;
+const count = ref(0);
+const setPage = ref(1);
+const userId = ref(4);
+
+const orderByUser = () => {
+  Apis.order.orderByUser(setPage.value,userId.value).then((res) => {
+    orderList.value = res.data.data;
+    count.value = res.data.count;
+  });
+};
+orderByUser();
+
+const handleCurrentChange = (val: number) => {
+  // console.log("val"+val)
+  setPage.value = val++;
+  orderByUser();
+};
 </script>
 
 <template>
@@ -43,7 +43,7 @@ const articleList = reactive([
       </div>
       <div class="box">
         <!-- 内容 -->
-        <div class="content" v-for="item in articleList">
+        <div class="content" v-for="item in orderList">
           <div class="basic-msg">
             <div class="tag-title">
               <div class="tag-part">
@@ -65,7 +65,12 @@ const articleList = reactive([
 
         <!-- 分页 -->
         <div class="page">
-          <el-pagination layout="prev, pager, next" :total="50" />
+          <el-pagination
+            :currentPage="page"
+            layout="prev, pager, next"
+            :total="count"
+            @current-change="handleCurrentChange"
+          />
         </div>
       </div>
     </div>
