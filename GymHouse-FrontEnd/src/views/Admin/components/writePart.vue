@@ -53,15 +53,11 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   await formEl.validate((valid, fields) => {
     if (valid) {
       Apis.article.publish(formData).then((res) => {
-        alert(res.data.message);
-        console.log("submit!");
-        console.log(formData);
-      });
-
-      //提示框
-      ElMessage({
-        message: "提交成功！我们会尽快改进",
-        type: "success",
+        //提示框
+        ElMessage({
+          message: "文章发布成功",
+          type: "success",
+        });
       });
     } else {
       console.log("error submit!", fields);

@@ -1,37 +1,36 @@
 <script lang="ts" setup>
 import { ElPagination, ElTag } from "element-plus";
 import { Ref, ref, reactive } from "vue";
+import * as Apis from "../../../request/apis/index";
 
 //表单
-const articleList = reactive([
-  {
-    userName: "张三",
-    phone: "13500000000",
-    date: "2023-03-23",
-    time: "上午",
-    address: "同心圆店",
-    trainMode:"自由训练",
-    notes:"备注备注111"
-  },
-  {
-    userName: "张三",
-    phone: "13500000000",
-    date: "2023-03-23",
-    time: "上午",
-    address: "同心圆店",
-    trainMode:"自由训练",
-    notes:"备注备注111"
-  },
-  {
-    userName: "张三",
-    phone: "13500000000",
-    date: "2023-03-23",
-    time: "上午",
-    address: "同心圆店",
-    trainMode:"自由训练",
-    notes:"备注备注111"
-  },
-]);
+const orderList: any = ref({
+  userName: "",
+  phone: "",
+  date: "",
+  time: "",
+  address: "",
+  trainMode: "",
+  notes: "",
+});
+
+const page = 1;
+const count = ref(0);
+const setPage = ref(1);
+
+const getOrderList = () => {
+  Apis.order.orderList(setPage.value).then((res) => {
+    orderList.value = res.data.data;
+    count.value = res.data.count;
+  });
+};
+getOrderList();
+
+const handleCurrentChange = (val: number) => {
+  // console.log("val"+val)
+  setPage.value = val++;
+  getOrderList();
+};
 </script>
 
 <template>
@@ -43,17 +42,19 @@ const articleList = reactive([
       </div>
       <div class="box">
         <!-- 内容 -->
-        <div class="content" v-for="item in articleList">
+        <div class="content" v-for="item in orderList">
           <div class="basic-msg">
             <div class="tag-title">
               <div class="tag-part">
-                <el-tag class="tag">{{item.trainMode}}</el-tag>
+                <el-tag class="tag">{{ item.trainMode }}</el-tag>
               </div>
-              <div class="article-title">{{ item.address }} - {{ item.date }} - {{ item.time }}</div>
+              <div class="article-title">
+                {{ item.address }} - {{ item.time }}
+              </div>
             </div>
 
             <div class="abstract">
-              备注：{{ item.notes }}
+              到店日期：{{ item.date }} - 备注：{{ item.notes }}
             </div>
           </div>
 
@@ -65,7 +66,12 @@ const articleList = reactive([
 
         <!-- 分页 -->
         <div class="page">
-          <el-pagination layout="prev, pager, next" :total="50" />
+          <el-pagination
+            :currentPage="page"
+            layout="prev, pager, next"
+            :total="count"
+            @current-change="handleCurrentChange"
+          />
         </div>
       </div>
     </div>
@@ -132,7 +138,7 @@ const articleList = reactive([
       margin-top: 10px;
       padding: 10px;
       text-align: end;
-      width: 22%;
+      width: 25%;
       color: #666;
       font-size: 16px;
       .date {
