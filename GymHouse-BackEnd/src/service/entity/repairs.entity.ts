@@ -30,4 +30,7 @@ export class Reparis {
 
   @Column()
   notes: string;
+
+  @Column()
+  createTime: string;
 }

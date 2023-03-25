@@ -10,6 +10,9 @@ class ReparisService {
     const repairs = connection.getRepository(Reparis);
     const repairsEntity = new Reparis();
 
+    const date = new Date();
+    const nowDate = date.toLocaleString();
+
     repairsEntity.userName = repairsMsg.name;
     repairsEntity.userId = repairsMsg.userId;
     repairsEntity.phone = repairsMsg.phone;
@@ -18,6 +21,7 @@ class ReparisService {
     repairsEntity.address = repairsMsg.address;
     repairsEntity.machineNum = repairsMsg.equipment;
     repairsEntity.notes = repairsMsg.notes;
+    repairsEntity.createTime = nowDate;
 
     await repairs.save(repairsEntity);
     connection.close();
@@ -37,7 +41,7 @@ class ReparisService {
 
     const findRepairs = await repairs.find({
       order: {
-        date: "DESC",
+        createTime: "DESC",
       },
       skip: (page - 1) * 10,
       take: 10,
@@ -67,7 +71,7 @@ class ReparisService {
     const findRepairs = await repairs.find({
       where: [{ userId: userId }],
       order: {
-        date: "DESC",
+        createTime: "DESC",
       },
       skip: (page - 1) * 10,
       take: 10,

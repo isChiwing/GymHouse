@@ -10,6 +10,9 @@ class OrderService {
     const order = connection.getRepository(Order);
     const orderEntity = new Order();
 
+    const date = new Date();
+    const nowDate = date.toLocaleString();
+
     orderEntity.userName = orderMsg.name;
     orderEntity.userId = orderMsg.userId;
     orderEntity.phone = orderMsg.phone;
@@ -18,6 +21,7 @@ class OrderService {
     orderEntity.address = orderMsg.address;
     orderEntity.trainMode = orderMsg.trainMode;
     orderEntity.notes = orderMsg.notes;
+    orderEntity.createTime = nowDate;
 
     await order.save(orderEntity);
     connection.close();
@@ -37,7 +41,7 @@ class OrderService {
 
     const findOrder = await order.find({
       order: {
-        date: "DESC",
+        createTime: "DESC",
       },
       skip: (page - 1) * 10,
       take: 10,
@@ -67,7 +71,7 @@ class OrderService {
     const findOrder = await order.find({
       where: [{ userId: userId }],
       order: {
-        date: "DESC",
+        createTime: "DESC",
       },
       skip: (page - 1) * 10,
       take: 10,

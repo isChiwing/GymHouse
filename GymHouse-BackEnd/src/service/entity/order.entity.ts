@@ -30,4 +30,7 @@ export class Order {
 
   @Column()
   notes: string;
+
+  @Column()
+  createTime: string;
 }
