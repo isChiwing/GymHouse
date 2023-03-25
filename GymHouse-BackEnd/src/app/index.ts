@@ -1,6 +1,7 @@
 import Koa from "koa";
 import koaBody from "koa-body";
 const userRouter = require("../router/user.route");
+const orderRouter = require("../router/order.route");
 require("reflect-metadata");
 const error = require("koa-json-error");
 
@@ -22,5 +23,6 @@ app.use(
 
 app.use(koaBody());
 app.use(userRouter.routes());
+app.use(orderRouter.routes());
 
 module.exports = app;
