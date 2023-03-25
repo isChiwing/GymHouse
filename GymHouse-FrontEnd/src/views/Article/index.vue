@@ -6,7 +6,7 @@ import * as Apis from "../../request/apis/index";
 //表单
 const articleList: any = ref({
   title: "",
-  articleType: null,
+  articleType: 0,
   author: "",
   publishTime: "",
   content: "",
@@ -134,7 +134,7 @@ const handleCurrentChange = (val: number) => {
       margin-top: 10px;
       padding: 10px;
       text-align: end;
-      width: 22%;
+      width: 25%;
       color: #666;
       font-size: 16px;
       .date {

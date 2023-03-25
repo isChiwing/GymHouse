@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { Ref, ref, reactive } from "vue";
 import LgBtn from "@/components/LoginButton.vue";
+import * as Apis from "../../../request/apis/index";
 
 import {
   FormInstance,
@@ -18,8 +19,8 @@ import {
 const formData = reactive({
   title: "",
   author: "",
-  type: "",
-  content: "",
+  type: 0,
+  text: "",
 });
 
 //门店数据
@@ -43,7 +44,7 @@ const rules = reactive<FormRules>({
       trigger: "change",
     },
   ],
-  content: [{ required: true, message: "请输入文章内容", trigger: "blur" }],
+  text: [{ required: true, message: "请输入文章内容", trigger: "blur" }],
 });
 
 //提交
@@ -51,8 +52,12 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      console.log("submit!");
-      console.log(formData);
+      Apis.article.publish(formData).then((res) => {
+        alert(res.data.message);
+        console.log("submit!");
+        console.log(formData);
+      });
+
       //提示框
       ElMessage({
         message: "提交成功！我们会尽快改进",
@@ -94,14 +99,14 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 
             <el-form-item label="文章类型" prop="type">
               <el-radio-group v-model="formData.type">
-                <el-radio label="文章" />
-                <el-radio label="通知" />
+                <el-radio label="0">文章</el-radio>
+                <el-radio label="1">通知</el-radio>
               </el-radio-group>
             </el-form-item>
 
-            <el-form-item label="文章内容" prop="content">
+            <el-form-item label="文章内容" prop="text">
               <el-input
-                v-model="formData.content"
+                v-model="formData.text"
                 :rows="10"
                 type="textarea"
                 resize="none"
