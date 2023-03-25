@@ -1,31 +1,34 @@
 <script lang="ts" setup>
 import { ElPagination, ElTag } from "element-plus";
 import { Ref, ref, reactive } from "vue";
+import * as Apis from "../../request/apis/index";
 
 //表单
-const articleList = reactive([
-  {
-    title: "文章标题文章标题文章标题",
-    type: 0,
-    author: "admin",
-    date: "2023-01-29",
-    text: "文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容",
-  },
-  {
-    title: "文章标题2文章标题2文章标题",
-    type: 1,
-    author: "admin",
-    date: "2023-01-29",
-    text: "文章内容2文章内容2文章内容2文章内容2文章内容文章内容文章内容文章内容文章内容",
-  },
-  {
-    title: "文章标题3文章标题3文章标题",
-    type: 0,
-    author: "admin",
-    date: "2023-01-29",
-    text: "文章内容2文章内容2文章内容2文章内容2文章内容文章内容文章内容文章内容文章内容",
-  },
-]);
+const articleList: any = ref({
+  title: "",
+  articleType: null,
+  author: "",
+  publishTime: "",
+  content: "",
+});
+
+const page = 1;
+const count = ref(0);
+const setPage = ref(1);
+
+const getArticleList = () => {
+  Apis.article.articleList(setPage.value).then((res) => {
+    articleList.value = res.data.data;
+    count.value = res.data.count;
+  });
+};
+getArticleList();
+
+const handleCurrentChange = (val: number) => {
+  // console.log("val"+val)
+  setPage.value = val++;
+  getArticleList();
+};
 </script>
 
 <template>
@@ -38,26 +41,33 @@ const articleList = reactive([
         <div class="basic-msg">
           <div class="tag-title">
             <div class="tag-part">
-              <el-tag class="tag" v-if="item.type==0">文章</el-tag>
-              <el-tag class="ml-2" type="warning" v-if="item.type==1">通知</el-tag>
+              <el-tag class="tag" v-if="item.articleType == 0">文章</el-tag>
+              <el-tag class="ml-2" type="warning" v-if="item.articleType == 1"
+                >通知</el-tag
+              >
             </div>
             <div class="article-title">{{ item.title }}</div>
           </div>
 
           <div class="abstract">
-            {{ item.text }}
+            {{ item.content }}
           </div>
         </div>
 
         <div class="date-author">
-          <div class="date">日期：{{ item.date }}</div>
+          <div class="date">日期：{{ item.publishTime }}</div>
           <div class="author">作者：{{ item.author }}</div>
         </div>
       </div>
 
       <!-- 分页 -->
       <div class="page">
-        <el-pagination layout="prev, pager, next" :total="50" />
+        <el-pagination
+          :currentPage="page"
+          layout="prev, pager, next"
+          :total="count"
+          @current-change="handleCurrentChange"
+        />
       </div>
     </div>
   </div>
