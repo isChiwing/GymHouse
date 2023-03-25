@@ -50,11 +50,11 @@ const handleCurrentChange = (val: number) => {
               <div class="tag-part">
                 <el-tag class="tag" >器材编号：{{item.machineNum}}</el-tag>
               </div>
-              <div class="article-title">{{ item.address }} - {{item.trainArea}} - {{ item.date }}</div>
+              <div class="article-title">{{ item.address }} - {{item.trainArea}}</div>
             </div>
 
             <div class="abstract">
-              改进建议：{{ item.notes }}
+              报修日期：{{ item.date }} - 改进建议：{{ item.notes }}
             </div>
           </div>
 

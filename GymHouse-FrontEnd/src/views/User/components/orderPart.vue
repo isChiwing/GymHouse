@@ -49,11 +49,11 @@ const handleCurrentChange = (val: number) => {
               <div class="tag-part">
                 <el-tag class="tag">{{item.trainMode}}</el-tag>
               </div>
-              <div class="article-title">{{ item.address }} - {{ item.date }} - {{ item.time }}</div>
+              <div class="article-title">{{ item.address }} - {{ item.time }}</div>
             </div>
 
             <div class="abstract">
-              备注：{{ item.notes }}
+            到店日期： {{ item.date }} - 备注：{{ item.notes }}
             </div>
           </div>
 
