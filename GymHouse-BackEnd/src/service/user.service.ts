@@ -6,7 +6,7 @@ class UserService {
   /**
    * 注册
    */
-  async registerSservice(phone: string, userName: string, passWord: string) {
+  async registerService(phone: string, userName: string, passWord: string) {
     //调用数据库连接
     const connection = await createTypeOrmConnection();
     const user = connection.getRepository(User);

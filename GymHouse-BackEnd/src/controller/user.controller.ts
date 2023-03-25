@@ -1,4 +1,4 @@
-const { registerSservice,loginSservice } = require("../service/user.service");
+const { registerService,loginSservice } = require("../service/user.service");
 class UserController {
   /**
    * 注册
@@ -8,7 +8,7 @@ class UserController {
     const { phone, userName, passWord } = ctx.request.body;
 
     //操作数据库
-    const res = await registerSservice(phone, userName, passWord);
+    const res = await registerService(phone, userName, passWord);
 
     //返回结果
     if (res == 0) {
