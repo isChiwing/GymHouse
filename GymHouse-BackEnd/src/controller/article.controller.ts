@@ -1,6 +1,9 @@
-const { publishService } = require("../service/article.service");
+const { publishService,articleListService } = require("../service/article.service");
 
 class ArticleController {
+  /**
+   * 发布文章
+   */
   async publish(ctx: any, next: any) {
     //获取界面数据
     const { title, type, author, text, userId } = ctx.request.body;
@@ -13,6 +16,16 @@ class ArticleController {
       };
     }
   }
+
+  /**
+   * 文章列表
+   */
+  async articleList(ctx: any, next: any) {
+    const  page  = ctx.query.page;
+    const res = await articleListService(page);
+    ctx.body = res;
+  }
+  
 }
 
 module.exports = new ArticleController();
