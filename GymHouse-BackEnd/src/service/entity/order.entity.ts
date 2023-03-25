@@ -17,17 +17,17 @@ export class Order {
   phone: string;
 
   @Column()
-  date: number;
+  date: string;
 
   @Column()
-  time: number;
+  time: string;
 
   @Column()
-  address: number;
+  address: string;
 
   @Column()
-  trainMode: number;
+  trainMode: string;
 
   @Column()
-  notes: number;
+  notes: string;
 }
