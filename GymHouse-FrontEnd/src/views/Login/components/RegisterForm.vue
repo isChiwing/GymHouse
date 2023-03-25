@@ -2,6 +2,8 @@
 import { Ref, ref, reactive } from "vue";
 import LgBtn from "@/components/LoginButton.vue";
 import { User, Key, Iphone } from "@element-plus/icons-vue";
+import * as Apis from "../../../request/apis/index";
+import router from "../../../router";
 import {
   FormInstance,
   FormRules,
@@ -16,10 +18,10 @@ import {
 } from "element-plus";
 
 //表单
-const regData = reactive({
+const regData:any = reactive({
   phone: "",
-  username: "",
-  password: "",
+  userName: "",
+  passWord: "",
 });
 
 //表单手机验证
@@ -43,9 +45,9 @@ var checkPhone = (rule: any, value: any, callback: any) => {
 //表单验证
 const ruleFormRef = ref<FormInstance>();
 const rules = reactive<FormRules>({
-  username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+  userName: [{ required: true, message: "请输入用户名", trigger: "blur" }],
   phone: [{ required: true, validator: checkPhone, trigger: "blur" }],
-  password: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+  passWord: [{ required: true, message: "请输入用户名", trigger: "blur" }],
 });
 
 //提交
@@ -53,13 +55,21 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      console.log("submit!");
-      console.log(regData);
-      //提示框
-      ElMessage({
-        message: "注册成功！",
-        type: "success",
-      });
+      Apis.users.register(regData).then((res) => {
+          //提示框
+          ElMessage({
+            message: "注册成功",
+            type: "success",
+          });
+          router.go(0);
+        })
+        .catch((error: any) => {
+          const errorData =JSON.parse(error.request.response);
+          ElMessage({
+            message: errorData.message,
+            type: "error",
+          });
+        });
     } else {
       console.log("error submit!", fields);
     }
@@ -83,8 +93,8 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         size="large"
         :rules="rules"
       >
-        <el-form-item label="用户名 UserName" prop="username">
-          <el-input v-model="regData.username" placeholder="请填写用户名">
+        <el-form-item label="用户名 UserName" prop="userName">
+          <el-input v-model="regData.userName" placeholder="请填写用户名">
             <template #prefix>
               <el-icon class="el-input__icon"><user /></el-icon>
             </template>
@@ -99,9 +109,9 @@ const submitForm = async (formEl: FormInstance | undefined) => {
           </el-input>
         </el-form-item>
 
-        <el-form-item label="密码 PassWord" prop="password">
+        <el-form-item label="密码 PassWord" prop="passWord">
           <el-input
-            v-model="regData.password"
+            v-model="regData.passWord"
             placeholder="请填写密码"
             type="password"
             show-password
