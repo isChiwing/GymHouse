@@ -8,3 +8,20 @@ export function orderList(page: number) {
     params: { page },
   });
 }
+
+//提交预约
+export function submitorder(data: {
+    name: string;
+    phone: string;
+    date: string;
+    time: string;
+    address: string;
+    trainer: string;
+    note: string;
+  }) {
+    return service.request({
+      method: "POST",
+      url: "/api/order/submitorder",
+      data,
+    });
+  }

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { Ref, ref, reactive } from "vue";
 import LgBtn from "@/components/LoginButton.vue";
+import * as Apis from "../../request/apis/index";
 import {
   FormInstance,
   FormRules,
@@ -14,13 +15,13 @@ import {
 } from "element-plus";
 
 //表单
-const formData = reactive({
+const formData:any = ref({
   name: "",
   phone: "",
   date: "",
   time: "",
   address: "",
-  trainer: "",
+  trainMode: "",
   note: "",
 });
 
@@ -88,7 +89,7 @@ const rules = reactive<FormRules>({
       trigger: "change",
     },
   ],
-  trainer: [
+  trainMode: [
     {
       required: true,
       message: "请选择训练方式",
@@ -102,12 +103,13 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      console.log("submit!");
-      console.log(formData);
-      //提示框
-      ElMessage({
-        message: "预约成功！",
-        type: "success",
+      Apis.order.submitorder(formData.value).then((res) => {
+        console.log(formData)
+        //提示框
+        ElMessage({
+          message: "预约提交成功",
+          type: "success",
+        });
       });
     } else {
       console.log("error submit!", fields);
@@ -168,9 +170,9 @@ const submitForm = async (formEl: FormInstance | undefined) => {
             </el-select>
           </el-form-item>
 
-          <el-form-item label="训练方式" prop="trainer">
+          <el-form-item label="训练方式" prop="trainMode">
             <el-select
-              v-model="formData.trainer"
+              v-model="formData.trainMode"
               placeholder="请选择训练方式"
             >
               <el-option

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { Ref, ref, reactive } from "vue";
 import LgBtn from "@/components/LoginButton.vue";
+import * as Apis from "../../request/apis/index";
 import {
   FormInstance,
   FormRules,
@@ -14,7 +15,7 @@ import {
 } from "element-plus";
 
 //表单
-const formData = reactive({
+const formData:any = reactive({
   name: "",
   phone: "",
   date: "",
@@ -104,12 +105,13 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      console.log("submit!");
-      console.log(formData);
-      //提示框
-      ElMessage({
-        message: "提交成功！我们会尽快改进",
-        type: "success",
+      Apis.repairs.submitrepairs(formData).then((res) => {
+        console.log(formData)
+        //提示框
+        ElMessage({
+          message: "报修提交成功",
+          type: "success",
+        });
       });
     } else {
       console.log("error submit!", fields);

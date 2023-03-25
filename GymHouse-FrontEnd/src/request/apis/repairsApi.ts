@@ -9,3 +9,19 @@ export function repairsList(page: number) {
     });
   }
   
+  //提交预约
+export function submitrepairs(data: {
+  name: string;
+  phone: string;
+  date: string;
+  area: string;
+  address: string;
+  equipment: string;
+  note: string;
+}) {
+  return service.request({
+    method: "POST",
+    url: "/api/repairs/submitrepairs",
+    data,
+  });
+}
