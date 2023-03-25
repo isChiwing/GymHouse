@@ -11,7 +11,7 @@ class ArticleService {
     const articleEntity = new Article();
 
     const date = new Date();
-    const nowDate = date.toLocaleDateString();
+    const nowDate = date.toLocaleString();
 
     articleEntity.author = articleMsg.author;
     articleEntity.userId = articleMsg.userId;
