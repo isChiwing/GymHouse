@@ -31,7 +31,6 @@ const rules = reactive<FormRules>({
 });
 
 //提交
-let loginType = 0;
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
@@ -45,9 +44,9 @@ const submitForm = async (formEl: FormInstance | undefined) => {
             message: "登录成功",
             type: "success",
           });
-          if (loginType == 0) {
+          if (res.data.userType == 0) {
             router.push("/admin");
-          } else if (loginType == 1) {
+          } else if (res.data.userType == 1) {
             router.push("/user");
           }
         })
