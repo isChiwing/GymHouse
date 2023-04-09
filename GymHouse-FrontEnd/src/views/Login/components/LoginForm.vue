@@ -37,6 +37,9 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   await formEl.validate((valid, fields) => {
     if (valid) {
       Apis.users.login(loginData).then((res) => {
+          //存入token
+          const tokenValue = res.data.token;
+          localStorage.setItem("token", tokenValue);
           //提示框
           ElMessage({
             message: "登录成功",
