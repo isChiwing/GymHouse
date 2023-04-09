@@ -1,4 +1,5 @@
 const { registerService,loginSservice } = require("../service/user.service");
+let createToken = require('../token/create.token')
 class UserController {
   /**
    * 注册
@@ -29,14 +30,16 @@ class UserController {
   async login(ctx: any, next: any) {
     const { phone, passWord } = ctx.request.body;
     const res = await loginSservice(phone, passWord);
-    console.log(res);
+    //console.log(secret);
     //返回结果
-    if (res == 0) {
+    if (res.flag == 0) {
       ctx.body = {
         status: 200,
         message: "登录成功",
+        token: createToken(res.findUser.userName,res.findUser.phone,res.findUser.userType)
       };
-    } else if (res == 1) {
+    } else if (res.flag == 1) 
+    {
         ctx.throw(500, '用户名不存在或密码错误！')
     }
   }

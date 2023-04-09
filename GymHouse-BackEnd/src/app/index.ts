@@ -6,6 +6,8 @@ const repairsRouter = require("../router/reparis.route");
 const articleRouter = require("../router/article.route");
 require("reflect-metadata");
 const error = require("koa-json-error");
+const koajwt = require('koa-jwt');
+const config = require('../config/token.config')
 
 const app = new Koa();
 
@@ -22,6 +24,12 @@ app.use(
     ) => rest,
   })
 );
+
+// app.use(koajwt({
+//   secret:  config.secret
+// }).unless({
+//   path: []
+// }));
 
 app.use(koaBody());
 app.use(userRouter.routes());

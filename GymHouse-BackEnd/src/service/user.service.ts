@@ -57,7 +57,10 @@ class UserService {
     const user = connection.getRepository(User);
 
     /** 0:成功 1:用户名不存在或密码错误 */
-    let flag: number;
+    let flag={
+      flag:1,
+      findUser:{}
+    };
 
     //查询用户
     const findUser = await user.find({
@@ -66,13 +69,15 @@ class UserService {
 
     //判断是否查到用户
     if (!findUser[0]) {
-      flag = 1;
+      flag.flag = 1;
     } else {
       //判断用户名和密码
       if (bcrypt.compareSync(passWord, findUser[0].passWord)) {
-        flag = 0;
+        //console.log(findUser[0])
+        flag.flag = 0;
+        flag.findUser=findUser[0]
       } else {
-        flag = 1;
+        flag.flag = 1;
       }
     }
 
