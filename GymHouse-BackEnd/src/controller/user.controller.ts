@@ -37,7 +37,7 @@ class UserController {
         status: 200,
         message: "登录成功",
         userType: res.findUser.userType,
-        token: createToken(res.findUser.userName,res.findUser.phone,res.findUser.userType)
+        token: createToken(res.findUser.userId,res.findUser.userName,res.findUser.phone,res.findUser.userType)
       };
     } else if (res.flag == 1) 
     {
