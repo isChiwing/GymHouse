@@ -2,9 +2,35 @@
 import { ref } from 'vue'
 import LoginButton from './LoginButton.vue'
 import router from "../router";
+import { User } from "@element-plus/icons-vue";
+import * as Apis from "../request/apis/index";
+import {
+  ElMessage,
+} from "element-plus";
 
 const jumpLoginPage = ()=>{
   router.push("/login")
+}
+
+const jumpUser = ()=>{
+  Apis.users.checkUser().then((res) => {
+    if(res.data.status ==200){
+      //console.log(res);
+      const userData = JSON.parse(res.data.message);
+      if(userData.userType == 0){
+        router.push("/admin")
+      }else{
+        router.push("/user")
+      }
+      console.log(userData);
+    }else{
+      ElMessage({
+          message: "请重新登录",
+          type: "error",
+        });
+      router.push("/login")
+    }
+  });
 }
 
 </script>
@@ -35,6 +61,7 @@ const jumpLoginPage = ()=>{
         </li>
       </ul>
       <LoginButton @click="jumpLoginPage">登入/注册</LoginButton>
+      <div class="user" @click="jumpUser"><el-icon><User/></el-icon></div>
     </div>
   </div>
 </template>
@@ -67,7 +94,16 @@ const jumpLoginPage = ()=>{
       font-family: Helvetica;
     }
   }
-
+  .user{
+    width: 20px;
+    height: 20px;
+    margin-left: 20px;
+    font-size: 25px;
+    cursor: pointer;
+    &:hover {
+      color: var(--theme-color);
+    }
+  }
   .right-content {
     display: flex;
     justify-content: space-between;

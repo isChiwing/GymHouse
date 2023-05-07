@@ -1,8 +1,10 @@
 <script lang="ts" setup>
+import { Ref, ref, reactive } from "vue";
 import orderPart from "./components/orderPart.vue";
 import repairsPart from "./components/repairsPart.vue";
 import writePart from "./components/writePart.vue";
 import { Calendar, Edit, MessageBox } from "@element-plus/icons-vue";
+
 
 const jumpOrderPart: any = () => {
   const intention: any = document.getElementById("#order");

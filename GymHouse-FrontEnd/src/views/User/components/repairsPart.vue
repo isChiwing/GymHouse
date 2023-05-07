@@ -2,6 +2,10 @@
 import { ElPagination, ElTag } from "element-plus";
 import { Ref, ref, reactive } from "vue";
 import * as Apis from "../../../request/apis/index";
+import {
+  ElMessage,
+} from "element-plus";
+
 
 //表单
 const repairsList: any = ref({
@@ -17,7 +21,27 @@ const repairsList: any = ref({
 const page = 1;
 const count = ref(0);
 const setPage = ref(1);
-const userId = ref(4);
+let userId = ref(0);
+
+let userName = ref("");
+
+const getUser = async () => {
+  await Apis.users.checkUser().then((res) => {
+    if(res.data.status ==200){
+      const userData = JSON.parse(res.data.message);
+      userName.value = userData.userName;
+      userId.value = userData.userId;
+      console.log("getUser:"+userId.value);
+    }else{
+      ElMessage({
+          message: "请重新登录",
+          type: "error",
+        });
+    }
+  });
+  await orderByUser();
+};
+getUser();
 
 const orderByUser = () => {
   Apis.repairs.repairsByUser(setPage.value,userId.value).then((res) => {
@@ -25,7 +49,7 @@ const orderByUser = () => {
     count.value = res.data.count;
   });
 };
-orderByUser();
+// orderByUser();
 
 const handleCurrentChange = (val: number) => {
   // console.log("val"+val)

@@ -47,6 +47,23 @@ const rules = reactive<FormRules>({
   text: [{ required: true, message: "请输入文章内容", trigger: "blur" }],
 });
 
+const getUser = () => {
+  Apis.users.checkUser().then((res) => {
+    if(res.data.status ==200){
+      //console.log(res);
+      const userData = JSON.parse(res.data.message);
+      formData.author = userData.userName;
+      console.log(formData);
+    }else{
+      ElMessage({
+          message: "请重新登录",
+          type: "error",
+        });
+    }
+  });
+};
+getUser();
+
 //提交
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;

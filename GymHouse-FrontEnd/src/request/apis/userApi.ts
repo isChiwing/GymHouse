@@ -17,3 +17,11 @@ export function register(data: { phone: string; userName: string; passWord: stri
       data,
     });
   }
+
+//用户检查
+export function checkUser() {
+  return service.request({
+    method: "GET",
+    url: "/api/user/checkUser"
+  });
+}

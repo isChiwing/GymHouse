@@ -13,6 +13,8 @@ import {
   ElOption,
   ElSelect,
 } from "element-plus";
+import { json } from "stream/consumers";
+import router from "../../router";
 
 //表单
 const formData:any = ref({
@@ -97,6 +99,25 @@ const rules = reactive<FormRules>({
     },
   ],
 });
+
+const getUser = () => {
+  Apis.users.checkUser().then((res) => {
+    if(res.data.status ==200){
+      //console.log(res);
+      const userData = JSON.parse(res.data.message);
+      formData.value.name = userData.userName;
+      formData.value.phone = userData.phone;
+      console.log(formData);
+    }else{
+      ElMessage({
+          message: "请重新登录",
+          type: "error",
+        });
+      router.push("/login")
+    }
+  });
+};
+getUser();
 
 //提交
 const submitForm = async (formEl: FormInstance | undefined) => {

@@ -2,6 +2,9 @@
 import { ElPagination, ElTag } from "element-plus";
 import { Ref, ref, reactive } from "vue";
 import * as Apis from "../../../request/apis/index";
+import {
+  ElMessage,
+} from "element-plus";
 
 //表单
 const orderList: any = ref({
@@ -17,6 +20,23 @@ const orderList: any = ref({
 const page = 1;
 const count = ref(0);
 const setPage = ref(1);
+
+let userName = ref("");
+const getUser = () => {
+  Apis.users.checkUser().then((res) => {
+    if(res.data.status ==200){
+      //console.log(res);
+      const userData = JSON.parse(res.data.message);
+      userName.value = userData.userName;
+    }else{
+      ElMessage({
+          message: "请重新登录",
+          type: "error",
+        });
+    }
+  });
+};
+getUser();
 
 const getOrderList = () => {
   Apis.order.orderList(setPage.value).then((res) => {
@@ -36,6 +56,7 @@ const handleCurrentChange = (val: number) => {
 <template>
   <div id="#order">
     <div class="orderPart">
+      <div class="userName">欢迎 {{userName}} !</div>
       <div class="title">
         <span>ORDER</span>
         OF USER
@@ -83,6 +104,10 @@ const handleCurrentChange = (val: number) => {
   padding-top: 20px;
   margin-left: 20%;
   min-height: calc(100vh - 61px);
+}
+.userName{
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .title {
   padding-top: 5vh;

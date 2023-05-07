@@ -13,6 +13,7 @@ import {
   ElOption,
   ElSelect,
 } from "element-plus";
+import router from "../../router";
 
 //表单
 const formData:any = reactive({
@@ -99,6 +100,25 @@ const rules = reactive<FormRules>({
   ],
   equipment: [{ required: true, message: "请输入器材编号", trigger: "blur" }],
 });
+
+const getUser = () => {
+  Apis.users.checkUser().then((res) => {
+    if(res.data.status ==200){
+      //console.log(res);
+      const userData = JSON.parse(res.data.message);
+      formData.name = userData.userName;
+      formData.phone = userData.phone;
+      console.log(formData);
+    }else{
+      ElMessage({
+          message: "请重新登录",
+          type: "error",
+        });
+      router.push("/login")
+    }
+  });
+};
+getUser();
 
 //提交
 const submitForm = async (formEl: FormInstance | undefined) => {

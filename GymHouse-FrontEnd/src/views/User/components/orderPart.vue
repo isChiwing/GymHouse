@@ -2,6 +2,10 @@
 import { ElPagination, ElTag } from "element-plus";
 import { Ref, ref, reactive } from "vue";
 import * as Apis from "../../../request/apis/index";
+import {
+  ElMessage,
+} from "element-plus";
+
 
 //表单
 const orderList: any = ref({
@@ -17,15 +21,37 @@ const orderList: any = ref({
 const page = 1;
 const count = ref(0);
 const setPage = ref(1);
-const userId = ref(4);
+let userId = ref(0);
+
+let userName = ref("");
+
+const getUser = async () => {
+  await Apis.users.checkUser().then((res) => {
+    if(res.data.status ==200){
+      const userData = JSON.parse(res.data.message);
+      userName.value = userData.userName;
+      userId.value = userData.userId;
+      console.log("getUser:"+userId.value);
+    }else{
+      ElMessage({
+          message: "请重新登录",
+          type: "error",
+        });
+    }
+  });
+  await orderByUser();
+};
+
+getUser();
 
 const orderByUser = () => {
+  console.log("order:",userId.value);
   Apis.order.orderByUser(setPage.value,userId.value).then((res) => {
     orderList.value = res.data.data;
     count.value = res.data.count;
   });
 };
-orderByUser();
+
 
 const handleCurrentChange = (val: number) => {
   // console.log("val"+val)
@@ -37,6 +63,7 @@ const handleCurrentChange = (val: number) => {
 <template>
   <div id="#order">
     <div class="orderPart">
+      <div class="userName">欢迎 {{userName}} !</div>
       <div class="title">
         <span>ORDER</span>
         OF ME
@@ -82,6 +109,10 @@ const handleCurrentChange = (val: number) => {
   padding-top: 20px;
   margin-left: 20%;
   min-height: calc(100vh - 61px);
+}
+.userName{
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .title {
   padding-top: 5vh;
