@@ -17,6 +17,7 @@ import router from "../../router";
 
 //表单
 const formData:any = reactive({
+  userId:"",
   name: "",
   phone: "",
   date: "",
@@ -108,6 +109,7 @@ const getUser = () => {
       const userData = JSON.parse(res.data.message);
       formData.name = userData.userName;
       formData.phone = userData.phone;
+      formData.userId = userData.userId;
       console.log(formData);
     }else{
       ElMessage({

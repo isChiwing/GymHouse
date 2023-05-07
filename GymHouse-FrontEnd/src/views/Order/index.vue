@@ -18,6 +18,7 @@ import router from "../../router";
 
 //表单
 const formData:any = ref({
+  userId:"",
   name: "",
   phone: "",
   date: "",
@@ -107,6 +108,7 @@ const getUser = () => {
       const userData = JSON.parse(res.data.message);
       formData.value.name = userData.userName;
       formData.value.phone = userData.phone;
+      formData.value.userId = userData.userId;
       console.log(formData);
     }else{
       ElMessage({
