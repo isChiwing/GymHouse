@@ -11,6 +11,12 @@ const service = axios.create({
  */
 service.interceptors.request.use(
   function (config) {
+
+    const token = localStorage.getItem('token'); // 从本地存储获取token
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`; // 将token添加到请求头
+    }
+    
     return config;
   },
   function (error) {
