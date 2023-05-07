@@ -1,5 +1,6 @@
 const { registerService,loginSservice } = require("../service/user.service");
 let createToken = require('../token/create.token')
+import decodeToken  from '../token/check.token'
 class UserController {
   /**
    * 注册
@@ -42,6 +43,17 @@ class UserController {
     } else if (res.flag == 1) 
     {
         ctx.throw(500, '用户名不存在或密码错误！')
+    }
+  }
+
+  async checkUser(ctx: any, next: any){
+    const token = ctx.headers.authorization.split(' ')[1]; // 从请求头中获取JWT token
+    const flag = await decodeToken(token);
+    if(flag == null){
+      ctx.body = {status:400,message:"请重新登录！"}
+    }else{
+      console.log("flag:"+JSON.stringify(flag));
+      ctx.body ={status:200,message:JSON.stringify(flag)};
     }
   }
 }
